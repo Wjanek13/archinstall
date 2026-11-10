@@ -1,3 +1,4 @@
+import sys
 import termios
 import tty
 
@@ -17,7 +18,13 @@ def getch():
 
 if __name__ == "__main__":
     clear()
+    print("Press any key (Press Ctrl+C or 'q' to exit):\n")
     while True:
         key = getch()
+        
+        if key == '\x03' or key == 'q':
+            print("\nExiting...")
+            break
+            
         clear()
-        print(f"\nYou pressed: {key}")
+        print(f"\nYou pressed: {repr(key)} (press Ctrl+C or 'q' to exit)")
