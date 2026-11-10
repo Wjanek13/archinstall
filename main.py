@@ -17,6 +17,6 @@ def getch():
 
 if __name__ == "__main__":
     while True:
-        clear()
         key = getch()
+        clear()
         print(f"\nYou pressed: {key}")
