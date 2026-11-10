@@ -1,6 +1,9 @@
 import termios
 import tty
 
+def clear():
+    print("\033[H\033[J", end="", flush=True)
+
 def getch():
     with open('/dev/tty', 'r') as tty_file:
         fd = tty_file.fileno()
@@ -13,6 +16,7 @@ def getch():
         return ch
 
 if __name__ == "__main__":
-    print("Press any key to continue: ", end="", flush=True)
-    key = getch()
-    print(f"\nYou pressed: {key}")
+    while True:
+        clear()
+        key = getch()
+        print(f"\nYou pressed: {key}")
