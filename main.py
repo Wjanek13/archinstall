@@ -16,6 +16,7 @@ def getch():
         return ch
 
 if __name__ == "__main__":
+    clear()
     while True:
         key = getch()
         clear()
