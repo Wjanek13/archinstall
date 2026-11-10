@@ -1,5 +1,18 @@
-import shutil, sys
-print("hello")
-print("\033[2J\033[1;1H", end='')
-x, y = shutil.get_terminal_size()
-print(f"X: {x}, Y: {y}")
+import sys
+import termios
+import tty
+
+def getch():
+    fd = sys.stdin.fileno()
+    old_settings = termios.tcgetattr(fd)
+    try:
+        tty.setraw(sys.stdin.fileno())
+        ch = sys.stdin.read(1)
+    finally:
+        termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+    return ch
+
+if __name__ == "__main__":
+    print("Press any key to continue (or 'q' to exit): ", end="", flush=True)
+    key = getch()
+    print(f"\nYou pressed: {key}")
